@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starter Project Ontologi (.owl)</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Starter Project Ontologi dan Web Semantik</h1>
+    <p class="subtitle">Versi 2 — membaca file <code>.owl</code> hasil Protégé secara langsung.</p>
+
+    <div class="info-box">
+      <strong>File ontologi aktif:</strong> <code>{{ ontology_path }}</code><br>
+      Anda dapat mengganti file contoh ini dengan file <code>.owl</code> hasil ekspor dari Protégé, asalkan namespace dan nama entitas/query disesuaikan.
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <h2>Cari berdasarkan dosen</h2>
+        <form action="/lecturer" method="get">
+          <select name="name">
+            {% for item in lecturers %}
+            <option value="{{ item }}">{{ item }}</option>
+            {% endfor %}
+          </select>
+          <button type="submit">Lihat Mata Kuliah</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Lihat prasyarat mata kuliah</h2>
+        <form action="/prerequisite" method="get">
+          <select name="name">
+            {% for item in courses %}
+            <option value="{{ item }}">{{ item }}</option>
+            {% endfor %}
+          </select>
+          <button type="submit">Lihat Prasyarat Langsung</button>
+        </form>
+      </div>
+
+      <div class="card" style="border: 2px solid #4a90e2; background-color: #f0f8ff;">
+        <h2>✨ Lihat prasyarat (Inferensi OWL)</h2>
+        <form action="/inferred_prerequisite" method="get">
+          <select name="name">
+            {% for item in courses %}
+            <option value="{{ item }}">{{ item }}</option>
+            {% endfor %}
+          </select>
+          <button type="submit">Jalankan Reasoner & Cari</button>
+        </form>
+        <p style="font-size: 0.85em; margin-top: 10px; color: #555;">Memanfaatkan Transitive Property untuk menemukan prasyarat tidak langsung.</p>
+      </div>
+
+      <div class="card">
+        <h2>Lihat mata kuliah per semester</h2>
+        <form action="/semester" method="get">
+          <select name="name">
+            {% for item in semesters %}
+            <option value="{{ item }}">{{ item }}</option>
+            {% endfor %}
+          </select>
+          <button type="submit">Lihat Daftar</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h3>Catatan penggunaan</h3>
+      <ul>
+        <li>Project ini memakai <code>rdflib.Graph().parse("data/academic_ontology.owl")</code>.</li>
+        <li>Jika file hasil Protégé menggunakan namespace lain, ubah nilai <code>BASE</code> di <code>app.py</code>.</li>
+        <li>Jika nama class/property berbeda, sesuaikan query SPARQL dan route terkait.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

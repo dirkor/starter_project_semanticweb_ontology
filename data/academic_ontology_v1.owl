@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://example.org/akademik#"
+     xml:base="http://example.org/akademik"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://example.org/akademik"/>
+
+    <!-- Classes -->
+    <owl:Class rdf:about="http://example.org/akademik#Dosen"/>
+    <owl:Class rdf:about="http://example.org/akademik#DosenTetap">
+        <rdfs:subClassOf rdf:resource="http://example.org/akademik#Dosen"/>
+    </owl:Class>
+    <owl:Class rdf:about="http://example.org/akademik#DosenTamu">
+        <rdfs:subClassOf rdf:resource="http://example.org/akademik#Dosen"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://example.org/akademik#MataKuliah"/>
+    <owl:Class rdf:about="http://example.org/akademik#Semester"/>
+    <owl:Class rdf:about="http://example.org/akademik#ProgramStudi"/>
+
+    <!-- Object Properties -->
+    <owl:ObjectProperty rdf:about="http://example.org/akademik#mengampu">
+        <rdfs:domain rdf:resource="http://example.org/akademik#Dosen"/>
+        <rdfs:range rdf:resource="http://example.org/akademik#MataKuliah"/>
+        <owl:inverseOf rdf:resource="http://example.org/akademik#diampuOleh"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://example.org/akademik#diampuOleh">
+        <rdfs:domain rdf:resource="http://example.org/akademik#MataKuliah"/>
+        <rdfs:range rdf:resource="http://example.org/akademik#Dosen"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://example.org/akademik#memilikiPrasyarat">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/akademik#MataKuliah"/>
+        <rdfs:range rdf:resource="http://example.org/akademik#MataKuliah"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://example.org/akademik#ditawarkanPadaSemester">
+        <rdfs:domain rdf:resource="http://example.org/akademik#MataKuliah"/>
+        <rdfs:range rdf:resource="http://example.org/akademik#Semester"/>
+    </owl:ObjectProperty>
+
+    <!-- Datatype Properties -->
+    <owl:DatatypeProperty rdf:about="http://example.org/akademik#namaDosen"/>
+    <owl:DatatypeProperty rdf:about="http://example.org/akademik#kodeMK"/>
+
+    <!-- Individuals -->
+    <owl:NamedIndividual rdf:about="http://example.org/akademik#DosenC">
+        <rdf:type rdf:resource="http://example.org/akademik#DosenTetap"/>
+        <namaDosen rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dosen C</namaDosen>
+        <mengampu rdf:resource="http://example.org/akademik#KecerdasanBuatan"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://example.org/akademik#MatematikaDiskrit">
+        <rdf:type rdf:resource="http://example.org/akademik#MataKuliah"/>
+        <kodeMK rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IF101</kodeMK>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://example.org/akademik#StrukturData">
+        <rdf:type rdf:resource="http://example.org/akademik#MataKuliah"/>
+        <kodeMK rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IF202</kodeMK>
+        <memilikiPrasyarat rdf:resource="http://example.org/akademik#MatematikaDiskrit"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://example.org/akademik#KecerdasanBuatan">
+        <rdf:type rdf:resource="http://example.org/akademik#MataKuliah"/>
+        <kodeMK rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IF303</kodeMK>
+        <memilikiPrasyarat rdf:resource="http://example.org/akademik#StrukturData"/>
+    </owl:NamedIndividual>
+
+    <!-- Semesters -->
+    <owl:NamedIndividual rdf:about="http://example.org/akademik#Semester1">
+        <rdf:type rdf:resource="http://example.org/akademik#Semester"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://example.org/akademik#Semester2">
+        <rdf:type rdf:resource="http://example.org/akademik#Semester"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://example.org/akademik#Semester3">
+        <rdf:type rdf:resource="http://example.org/akademik#Semester"/>
+    </owl:NamedIndividual>
+
+    <!-- Additional Dosen -->
+    <owl:NamedIndividual rdf:about="http://example.org/akademik#DosenD">
+        <rdf:type rdf:resource="http://example.org/akademik#DosenTamu"/>
+        <namaDosen rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dosen D</namaDosen>
+        <mengampu rdf:resource="http://example.org/akademik#MatematikaDiskrit"/>
+    </owl:NamedIndividual>
+
+    <!-- Additional Course Properties -->
+    <rdf:Description rdf:about="http://example.org/akademik#MatematikaDiskrit">
+        <ditawarkanPadaSemester rdf:resource="http://example.org/akademik#Semester1"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/akademik#StrukturData">
+        <ditawarkanPadaSemester rdf:resource="http://example.org/akademik#Semester2"/>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="http://example.org/akademik#KecerdasanBuatan">
+        <ditawarkanPadaSemester rdf:resource="http://example.org/akademik#Semester3"/>
+    </rdf:Description>
+
+    <!-- Dosen A and B -->
+    <owl:NamedIndividual rdf:about="http://example.org/akademik#DosenA">
+        <rdf:type rdf:resource="http://example.org/akademik#Dosen"/>
+        <namaDosen rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dosen A</namaDosen>
+        <mengampu rdf:resource="http://example.org/akademik#BasisData"/>
+        <mengampu rdf:resource="http://example.org/akademik#WebSemantik"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://example.org/akademik#DosenB">
+        <rdf:type rdf:resource="http://example.org/akademik#Dosen"/>
+        <namaDosen rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dosen B</namaDosen>
+        <mengampu rdf:resource="http://example.org/akademik#AlgoritmaPemrograman"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://example.org/akademik#AlgoritmaPemrograman">
+        <rdf:type rdf:resource="http://example.org/akademik#MataKuliah"/>
+        <kodeMK rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IF201</kodeMK>
+        <ditawarkanPadaSemester rdf:resource="http://example.org/akademik#Semester3"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://example.org/akademik#BasisData">
+        <rdf:type rdf:resource="http://example.org/akademik#MataKuliah"/>
+        <kodeMK rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IF301</kodeMK>
+        <ditawarkanPadaSemester rdf:resource="http://example.org/akademik#Semester5"/>
+        <memilikiPrasyarat rdf:resource="http://example.org/akademik#AlgoritmaPemrograman"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://example.org/akademik#WebSemantik">
+        <rdf:type rdf:resource="http://example.org/akademik#MataKuliah"/>
+        <kodeMK rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IF502</kodeMK>
+        <ditawarkanPadaSemester rdf:resource="http://example.org/akademik#Semester5"/>
+        <memilikiPrasyarat rdf:resource="http://example.org/akademik#BasisData"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://example.org/akademik#Semester5">
+        <rdf:type rdf:resource="http://example.org/akademik#Semester"/>
+    </owl:NamedIndividual>
+
+</rdf:RDF>

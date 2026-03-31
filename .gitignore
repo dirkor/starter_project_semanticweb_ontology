@@ -1,0 +1,55 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment variables
+.env
+.venv
+
+# Flask specific
+instance/
+.webassets-cache
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Log files
+*.log
+
+# PyInstaller / cx_Freeze
+*.manifest
+*.spec
+
+# IDE / Editor folders
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Protégé configuration files
+catalog-v001.xml

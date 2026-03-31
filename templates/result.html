@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hasil Query</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>{{ title }}</h1>
+
+    {% if items %}
+      <ul class="result-list">
+        {% for item in items %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="empty">Tidak ada hasil.</p>
+    {% endif %}
+
+    <div class="query-box">
+      <h3>SPARQL yang dijalankan</h3>
+      <pre>{{ query }}</pre>
+    </div>
+
+    <a class="back-link" href="/">← Kembali ke halaman utama</a>
+  </div>
+</body>
+</html>
