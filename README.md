@@ -6,6 +6,8 @@ Topic by: Dirko G. S. Ruindungan, S.T., M.Eng.
 
 This app read `.owl` file from Protégé.
 
+[Download Protégé](https://protege.stanford.edu/software.php#desktop-protege) (Gunakan Versi Terakhir / 5.5.0 / 5.0.0 / 4.3)
+
 ## Fitur
 1. Cari mata kuliah berdasarkan dosen
 2. Lihat prasyarat mata kuliah (langsung)
